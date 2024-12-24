@@ -1,0 +1,22 @@
+﻿@page "/"
+@using ScottPlot
+@using ScottPlot.Blazor
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<BlazorPlot @ref=BlazorPlot Style="width: 400px; height: 300px;" />
+
+@code {
+
+    BlazorPlot BlazorPlot { get; set; } = new();
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        BlazorPlot.Plot.Add.Signal(Generate.Sin());
+        BlazorPlot.Plot.Add.Signal(Generate.Cos());
+    }
+}
